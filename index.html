@@ -379,6 +379,212 @@ module.exports = {
 </code></pre>
 					</section>
 				</section>
+				<section>
+					<h2>ES6 modules</h2>
+					<ul>
+						<li class="fragment">each module is a logically dedicated piece of code</li>
+						<li class="fragment">by default all declarations are local (private)
+							<span class="fragment">but some could be marked as <b>exports</b></span>
+						</li>
+						<li class="fragment">module can import other modules (or their parts)</li>
+						<li class="fragment">modules are singletones</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>exports</h3>
+						<ul>
+							<li class="fragment">named</li>
+							<li class="fragment">default (one per module)</li>
+						</ul>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>named exports</h3>
+<pre class="fragment code" data-fragment-index="0">utils.js<code class="hljs" data-trim contenteditable>
+export const SEC_IN_MINUTE = 60;
+</code></pre>
+<pre class="fragment code" data-fragment-index="1"><code class="hljs" data-trim contenteditable>
+export function getName(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="2"><code class="hljs" data-trim contenteditable>
+export class Actor(name, salary) {
+  this.name = name;
+  this.salary = salary;
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="3">app.js<code class="hljs" data-trim contenteditable>
+import { SEC_IN_MINUTE, getName } from 'utils';
+</code></pre>
+<pre class="fragment code" data-fragment-index="4"><code class="hljs" data-trim contenteditable>
+import * as UTILS from 'utils';
+const actor = new UTILS.Actor('Will Smith', 2000000);
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>default export</h3>
+<pre class="fragment code" data-fragment-index="0">super-sort.js<code class="hljs" data-trim contenteditable>
+export default function (array, predicate) {
+  //super sort algorithm here
+} //no semicolon
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">Actor.js<code class="hljs" data-trim contenteditable>
+export default class (name, salary) {
+  this.name = name;
+  this.salary = salary;
+} //no semicolon
+</code></pre>
+<pre class="fragment code" data-fragment-index="2">app.js<code class="hljs" data-trim contenteditable>
+import superSort from 'super-sort';
+import SuperActor from 'Actor';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>named + default export</h3>
+<pre class="fragment code" data-fragment-index="0">Actor.js<code class="hljs" data-trim contenteditable>
+export default class (name, salary) {
+  this.name = name;
+  this.salary = salary;
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1"><code class="hljs" data-trim contenteditable>
+export function getName(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="2">app.js<code class="hljs" data-trim contenteditable>
+import Actor, { getName as getActorName } from 'Actor';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>inline vs clause export</h3>
+<pre class="fragment code" data-fragment-index="0">inline.js<code class="hljs" data-trim contenteditable>
+export const SEC_IN_MINUTE = 60;
+export function getName(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">clause.js<code class="hljs" data-trim contenteditable>
+const SEC_IN_MINUTE = 60;
+function getName(actor) {
+  return actor.name || '';
+}
+&nbsp;
+export { SEC_IN_MINUTE, getName as getActorName };
+</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>imports</h3>
+						<ul>
+							<li class="fragment">import name from "module-name";</li>
+							<li class="fragment">import * as name from "module-name";</li>
+							<li class="fragment">import { member } from "module-name";</li>
+							<li class="fragment">import { member1 , member2 as alias2 , [...] } from "module-name";</li>
+							<li class="fragment">import defaultMember, { member [ , [...] ] } from "module-name";</li>
+							<li class="fragment">import defaultMember, * as alias from "module-name";</li>
+							<li class="fragment">import defaultMember from "module-name";</li>
+							<li class="fragment">import "module-name";</li>
+						</ul>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>named imports</h3>
+<pre class="fragment code" data-fragment-index="0">utils.js<code class="hljs" data-trim contenteditable>
+export function getSalary(actor) {
+  return actor.salary || -1;
+}
+export default function(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">app.js<code class="hljs" data-trim contenteditable>
+import getName from 'utils';
+import * as actorUtils from 'utils';
+import { getSalary as getActorSalary } from 'utils';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>default imports</h3>
+<pre class="fragment code" data-fragment-index="0">utils.js<code class="hljs" data-trim contenteditable>
+export function getSalary(actor) {
+  return actor.salary || -1;
+}
+export default function(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">app.js<code class="hljs" data-trim contenteditable>
+import getName from 'utils';
+import getName, * as actorUtils from 'utils';
+import getName, { getSalary as getActorSalary } from 'utils';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>empty import</h3>
+<pre class="fragment code" data-fragment-index="0">utils.js<code class="hljs" data-trim contenteditable>
+export function getSalary(actor) {
+  return actor.salary || -1;
+}
+export default function(actor) {
+  return actor.name || '';
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">app.js<code class="hljs" data-trim contenteditable>
+import 'utils';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>Imports are hoisted</h3>
+<pre class="fragment code" data-fragment-index="0">Actor.js<code class="hljs" data-trim contenteditable>
+export default class (name, salary) {
+  this.name = name;
+  this.salary = salary;
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">app.js<code class="hljs" data-trim contenteditable>
+const mFreeman = new Actor('Morgan Freeman', 3000000);
+</code></pre>
+<pre class="fragment code" data-fragment-index="2"><code class="hljs" data-trim contenteditable>
+import Actor from 'Actor';
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>Imports are read-only views on exports</h3>
+<pre class="fragment code" data-fragment-index="0">visit-utils.js<code class="hljs" data-trim contenteditable>
+export let visits = 0;
+export function visitorDetected() {
+  visits++;
+}
+</code></pre>
+<pre class="fragment code" data-fragment-index="1">app.js<code class="hljs" data-trim contenteditable>
+import { visits, visitorDetected } from 'visit-utils';
+console.log(visits); //0
+</code></pre>
+<pre class="fragment code" data-fragment-index="2"><code class="hljs" data-trim contenteditable>
+visitorDetected();
+</code></pre>
+<pre class="fragment code" data-fragment-index="3"><code class="hljs" data-trim contenteditable>
+console.log(visits); //1
+</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>ES6 modules</h2>
+					<h3>cyclic dependencies</h3>
+				</section>
 
 			</div>
 		</div>
