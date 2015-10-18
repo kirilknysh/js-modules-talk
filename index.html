@@ -306,6 +306,77 @@ requirejs(['scripts/app'], function(app) {
 				<section>
 					<section>
 						<h2>ECMAScript 6 modules</h2>
+<pre class="fragment code" data-fragment-index="0">utils.js<code class="hljs" data-trim contenteditable>
+import $ from 'jquery';
+&nbsp;&nbsp;
+</code></pre>
+<pre class="fragment code" data-fragment-index="1"><code class="hljs" data-trim contenteditable>
+const STATE = {
+  NAME_PREFIX: 'Sir ',
+  SAL_PREFIX: '€'
+};
+&nbsp;&nbsp;
+</code></pre>
+<pre class="fragment code" data-fragment-index="2"><code class="hljs" data-trim contenteditable>
+export function getName(actor) {
+  return STATE.NAME_PREFIX + $.trim(actor.name);
+}
+export function getSalary(actor) {
+  return STATE.SAL_PREFIX + actor.salary;
+}
+</code></pre>
+
+<pre class="fragment code" data-fragment-index="3">app.js<code class="hljs" data-trim contenteditable>
+import { getName, getSalary } from 'utils';
+</code></pre>
+<pre class="fragment code" data-fragment-index="4"><code class="hljs" data-trim contenteditable>
+&nbsp;&nbsp;
+getName(actor);
+</code></pre>
+					</section>
+					<section>
+						<h2>ECMAScript 6 modules</h2>
+						<h3>Browsers support</h3>
+						<img src="img/es6-modules-support.png">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>ES6 modules loaders</h2>
+						<ul>
+							<li><a href="https://github.com/ModuleLoader/es6-module-loader">es6-module-loader</a></li>
+							<li><a href="https://github.com/systemjs/systemjs">systemjs</a></li>
+							<li><a href="https://www.npmjs.com/package/grunt-es6-module-transpiler">Grunt
+								</a>/
+								<a href="https://github.com/ryanseddon/gulp-es6-module-transpiler">Gulp
+								</a>/
+								<a href="https://github.com/babel/babel-loader">webpack</a> builders
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>ES6 modules loaders (webpack)</h2>
+						<a href="demo/es6-webpack/index.html" target="_blank">demo/es6-webpack</a>
+<pre class="fragment code" data-fragment-index="0">webpack.config.js<code class="hljs" data-trim contenteditable>
+var path = require('path');
+
+module.exports = {
+  entry: './scripts/app.js',
+  output: {
+    path: __dirname,
+    filename: 'app.bundle.js'
+  },
+  module: {
+    loaders: [
+</code></pre>
+<pre class="fragment code" data-fragment-index="1"><code class="hljs" data-trim contenteditable>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ test: path.join(__dirname, 'scripts'), loader: 'babel-loader' }
+</code></pre>
+<pre class="fragment code" data-fragment-index="0"><code class="hljs" data-trim contenteditable>
+&nbsp;&nbsp;&nbsp;&nbsp;]
+  }
+};
+</code></pre>
 					</section>
 				</section>
 
