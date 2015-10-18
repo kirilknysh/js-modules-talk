@@ -1,0 +1,20 @@
+{
+  "name": "requirejs",
+  "description": "Require JS modules demo",
+  "main": "main.js",
+  "moduleType": [
+    "amd"
+  ],
+  "authors": [
+    "Kiril Knysh"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "requirejs": "~2.1.20",
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "rjs": "~2.1.20"
+  }
+}

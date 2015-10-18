@@ -267,8 +267,39 @@ require(['utils'], function (UTILS) {
 						</ul>
 					</section>
 					<section>
-						<h2>AMD Loaders</h2>
-						<h3>RequireJS</h3>
+						<h2>AMD Loaders (RequireJS)</h2>
+						<a href="demo/requirejs/index.html" target="_blank">demo/requirejs</a>
+<pre>index.html<code contenteditable>
+&lt;body&gt;
+    ...
+    &lt;script data-main=&quot;main&quot; src=&quot;bower_components/requirejs/require.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<pre>main.js<code class="hljs" data-trim contenteditable>
+requirejs.config({
+  paths: {
+    jquery: 'bower_components/jquery/dist/jquery'
+  }
+});
+
+requirejs(['scripts/app'], function(app) {
+  app.run();
+});
+</code></pre>
+					</section>
+					<section>
+						<h2>AMD Loaders (r.js optimizer)</h2>
+						<a href="demo/requirejs/index_build.html" target="_blank">demo/requirejs</a>
+<pre>build.js<code class="hljs" data-trim contenteditable>
+({
+  baseUrl: ".",
+  name: "main",
+  out: "./build/main.js",
+  paths: {
+    jquery: "bower_components/jquery/dist/jquery.min"
+  }
+})
+</code></pre>
 					</section>
 				</section>
 
