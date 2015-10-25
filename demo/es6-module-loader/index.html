@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ES6 modules loader</title>
+	<script type="text/javascript" src="node_modules/babel-core/browser.js"></script>
+	<script type="text/javascript" src="es6-module-loader-dev.src.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		System.transpiler = 'babel';
+	</script>
+
+	<select id="modules-selector">
+		<option>none</option>
+		<option>module-a</option>
+		<option>module-b</option>
+		<option>non-existing-module</option>
+	</select>
+	<div id="logs"></div>
+
+	<script type="text/javascript">
+		System.import('app.js').then(function(appModule) {
+			var app = appModule.app;
+
+			app.init();
+		});
+	</script>
+</body>
+</html>

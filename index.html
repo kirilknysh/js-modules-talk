@@ -584,6 +584,53 @@ console.log(visits); //1
 				<section>
 					<h2>ES6 modules</h2>
 					<h3>cyclic dependencies</h3>
+					<a href="demo/es6-webpack/index.html" target="_blank">demo/es6-webpack</a>
+				</section>
+				<section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>module loader API</h3>
+						<a href="https://github.com/whatwg/loader/" target="_blank">JavaScript Loader Standard</a>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>module loader API</h3>
+<pre class="fragment"><code class="hljs" data-trim contenteditable>
+System.import('some_module')
+  .then(some_module => {
+    // Use some_module
+  })
+  .catch(error => {
+    ···
+  });
+</code></pre>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>module loader API</h3>
+						<ul>
+							<li class="fragment">Convert <b>source</b> code to module
+<pre class="fragment" data-fragment-index="0"><code class="hljs" data-trim contenteditable>
+System.module(source, options?)
+</code></pre>
+							</li>
+							<li class="fragment">Register module
+<pre class="fragment" data-fragment-index="0"><code class="hljs" data-trim contenteditable>
+System.set(name, module)
+</code></pre>
+							</li>
+							<li class="fragment">Evaluates module code and registers it
+<pre class="fragment" data-fragment-index="0"><code class="hljs" data-trim contenteditable>
+System.define(name, source, options?)
+</code></pre>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>ES6 modules</h2>
+						<h3>module loader demo</h3>
+						<a href="demo/es6-module-loader/index.html" target="_blank">demo/es6-module-loader</a>
+					</section>
 				</section>
 
 			</div>

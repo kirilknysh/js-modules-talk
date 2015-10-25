@@ -1,2 +1,3 @@
 /demo/requirejs/bower_components
 /demo/es6-webpack/node_modules
+/demo/es6-module-loader/node_modules
