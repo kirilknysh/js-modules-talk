@@ -50,6 +50,8 @@
 
 	var _utils = __webpack_require__(1);
 
+	var _cyclicCyclicModuleA = __webpack_require__(3);
+
 	var _jquery = __webpack_require__(2);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
@@ -60,6 +62,10 @@
 	};
 
 	(0, _jquery2['default'])('body').text('Salary of ' + (0, _utils.getName)(actor) + ' is ' + (0, _utils.getSalary)(actor));
+
+	setTimeout(function () {
+	  (0, _cyclicCyclicModuleA.mainFunctionA)();
+	}, 2000);
 
 /***/ },
 /* 1 */
@@ -9307,6 +9313,50 @@
 
 	}));
 
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	exports.mainFunctionA = mainFunctionA;
+	exports.functionA = functionA;
+
+	var _cyclicModuleB = __webpack_require__(4);
+
+	function mainFunctionA() {
+		console.log('main function A');
+		(0, _cyclicModuleB.functionB)();
+	}
+
+	function functionA() {
+		console.log('function A');
+		if (Math.random() > 0.5) {
+			(0, _cyclicModuleB.functionB)();
+		}
+	}
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	exports.functionB = functionB;
+
+	var _cyclicModuleA = __webpack_require__(3);
+
+	function functionB() {
+		console.log('function B');
+		(0, _cyclicModuleA.functionA)();
+	}
 
 /***/ }
 /******/ ]);

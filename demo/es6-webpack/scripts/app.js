@@ -1,4 +1,5 @@
 import { getName, getSalary } from './utils';
+import { mainFunctionA } from './cyclic/cyclicModuleA';
 import $ from 'jquery';
 
 const actor = {
@@ -7,3 +8,6 @@ const actor = {
 };
 
 $('body').text('Salary of ' + getName(actor) + ' is ' + getSalary(actor));
+
+
+setTimeout(() => { mainFunctionA() }, 2000);
