@@ -2,3 +2,7 @@
 	margin: 0px auto;
 	box-shadow: none;
 }
+
+.-highlight {
+    color: #f36912;
+}
