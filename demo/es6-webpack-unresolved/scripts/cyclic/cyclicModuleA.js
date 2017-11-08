@@ -5,7 +5,7 @@ let bValue = functionB();
 
 export function mainFunctionA () {
 	console.log('main function A');
-    bValue = functionB();
+	bValue = functionB();
 }
 
 export function functionA () {

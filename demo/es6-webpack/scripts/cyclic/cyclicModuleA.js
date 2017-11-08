@@ -2,7 +2,7 @@ import { functionB } from './cyclicModuleB';
 
 export function mainFunctionA () {
 	console.log('main function A');
-    functionB();
+	functionB();
 }
 
 export function functionA () {
